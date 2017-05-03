@@ -1,0 +1,20 @@
+{
+	"name": "zeek/wp-utils",
+	"description": "A collection of functions that provide utility functionality for WordPress.",
+	"version": "0.1.0",
+	"type": "library",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Philip Newcomer",
+			"email": "philip@zeek.com",
+			"homepage": "http://zeek.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3"
+	},
+	"autoload": {
+		"files": [ "utils.php" ]
+	}
+}
