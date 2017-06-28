@@ -9,6 +9,11 @@
 			"name": "Philip Newcomer",
 			"email": "philip@zeek.com",
 			"homepage": "http://zeek.com"
+		},
+		{
+			"name": "Aaron Holbrook",
+			"email": "aaron@zeek.com",
+			"homepage": "http://zeek.com"
 		}
 	],
 	"require": {
