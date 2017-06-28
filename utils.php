@@ -48,8 +48,10 @@ function get_id_from_slug( $slug, $post_type = 'post', $force = false ) {
 			FROM 
 				%s
 			WHERE 
-				post_name = '%s' AND
-				post_type = '%s'
+				post_status = 'publish' AND
+				post_name   = '%s' AND
+				post_type   = '%s'
+			LIMIT 1
 			",
 			$wpdb->posts,
 			sanitize_text_field( $slug ),
