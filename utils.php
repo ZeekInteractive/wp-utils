@@ -78,13 +78,6 @@ function get_id_from_slug( $slug, $post_type = 'post', $force = false ) {
  *
  * @return int
  */
-/**
- * Performs a very direct, simple query that bypasses the normal WP caching
- *
- * @param $key
- *
- * @return int
- */
 function get_raw_option_value( $key ) {
 	global $wpdb;
 

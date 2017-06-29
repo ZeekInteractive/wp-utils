@@ -1,7 +1,7 @@
 {
 	"name": "zeek/wp-utils",
 	"description": "A collection of functions that provide utility functionality for WordPress.",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"type": "library",
 	"license": "proprietary",
 	"authors": [
