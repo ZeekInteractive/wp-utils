@@ -97,3 +97,20 @@ function get_raw_option_value( $key ) {
 
 	return intval( $version );
 }
+
+/**
+ * Easily get the user display name by the user ID
+ * 
+ * @param $user_id
+ *
+ * @return bool|string
+ */
+function get_user_display_name( $user_id ) {
+	$user = get_user_by( 'id', $user_id );
+
+	if ( empty( $user->data->display_name ) ) {
+		return false;
+	}
+
+	return $user->data->display_name;
+}
