@@ -99,18 +99,28 @@ function get_raw_option_value( $key ) {
 }
 
 /**
- * Easily get the user display name by the user ID
+ * Helper function to check for an environmental variable in a variety of places:
+ * - $_ENV (for setting via .env.php files)
+ * - Constant (for setting via a define() call)
+ * - Filter, utilizing a passed in filter
  * 
- * @param $user_id
+ * @param      $key
+ * @param null $filter
  *
- * @return bool|string
+ * @return mixed|null
  */
-function get_user_display_name( $user_id ) {
-	$user = get_user_by( 'id', $user_id );
-
-	if ( empty( $user->data->display_name ) ) {
-		return false;
+function get_env_value( $key, $filter = null ) {
+	if ( ! empty( $_ENV[ $key ] ) ) {
+		return $_ENV[ $key ];
 	}
 
-	return $user->data->display_name;
+	if ( defined( $key ) ) {
+		return constant( $key );
+	}
+	
+	if ( function_exists( $filter ) ) {
+		return apply_filters( $filter, null ); 
+	}
+
+	return null;
 }
