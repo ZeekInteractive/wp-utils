@@ -97,6 +97,34 @@ function get_raw_option_value( $key ) {
 
 	return intval( $version );
 }
+
+/**
+ * Helper function to check for an environmental variable in a variety of places:
+ * - $_ENV (for setting via .env.php files)
+ * - Constant (for setting via a define() call)
+ * - Filter, utilizing a passed in filter
+ * 
+ * @param      $key
+ * @param null $filter
+ *
+ * @return mixed|null
+ */
+function get_env_value( $key, $filter = null ) {
+	if ( ! empty( $_ENV[ $key ] ) ) {
+		return $_ENV[ $key ];
+	}
+
+	if ( defined( $key ) ) {
+		return constant( $key );
+	}
+	
+	if ( function_exists( $filter ) ) {
+		return apply_filters( $filter, null ); 
+	}
+
+	return null;
+}
+
 /**
  * Allow to remove method for an hook when, it's a class method used and
  * class don't have variable, but you know the class name
