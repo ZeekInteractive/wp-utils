@@ -163,3 +163,32 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
 
 	return false;
 }
+
+/**
+ * Check to see if:
+ * - ACF has been loaded and we can define our fields
+ * - ACF_LITE is enabled
+ * 
+ * If ACF_LITE is enabled, ensure the ACF_LITE constant is also defined
+ * 
+ * @return bool
+ */
+function is_acf_loadable() {
+
+	// Bail if ACF is not found or deactivated
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return false;
+	}
+
+	// Only load our hardcoded fields if ACF Lite is off
+	if ( true !== get_env_value( 'ACF_LITE' ) ) {
+		return false;
+	}
+
+	// If ACF_LITE was defined in a manner different from a constant, set the constant so that ACF turns on LITE mode
+	if ( ! defined( 'ACF_LITE' ) ) {
+		define( 'ACF_LITE', true );
+	}
+
+	return true;
+}
