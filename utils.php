@@ -215,3 +215,63 @@ function get_inline_svg( $path = null ) {
 	return file_get_contents( $full_path );
 }
 
+/**
+ * Use this when you know an ACF field key and a post ID, but the field is within a group.
+ * 
+ * This uses a non-performant lookup method, so use this with care.
+ * 
+ * @param $key
+ * @param $post_id
+ *
+ * @return bool|mixed
+ */
+function get_acf_meta_value_by_acf_key( $key, $post_id ) {
+
+	$lookup_key = get_meta_key_from_meta_value( $post_id, $key );
+
+	if ( empty( $lookup_key ) ) {
+		return false;
+	}
+
+	if ( 0 !== strpos( $lookup_key, '_' ) ) {
+		return false;
+	}
+
+	$lookup_key = substr( $lookup_key, 1 );
+
+	$real_value = get_post_meta( $post_id, $lookup_key, true );
+
+	return $real_value;
+}
+
+/**
+ * Perform a reverse lookup for a meta key based on a meta value.
+ * 
+ * This is pretty non-performant, so take care in using this.
+ * 
+ * @param $post_id
+ * @param $meta_value
+ *
+ * @return null|string
+ */
+function get_meta_key_from_meta_value( $post_id, $meta_value ) {
+	global $wpdb;
+
+	$sql = $wpdb->prepare( " 
+		SELECT
+			pm.meta_key
+		FROM
+			$wpdb->postmeta as pm
+		WHERE
+			pm.post_id = %d AND
+			pm.meta_value = %s
+		",
+		intval( $post_id ),
+		sanitize_text_field( $meta_value )
+	);
+
+	$result = $wpdb->get_var( $sql );
+
+	return $result;
+}
+
