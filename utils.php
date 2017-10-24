@@ -275,3 +275,13 @@ function get_meta_key_from_meta_value( $post_id, $meta_value ) {
 	return $result;
 }
 
+/**
+ * Gets a DateTime set to the WordPress's timezone 
+ * 
+ * @return \DateTime
+ */
+function get_current_datetime() {
+	$current_datetime = new \DateTime();
+	
+	return $current_datetime->setTimestamp( current_time( 'timestamp' ) );
+}
