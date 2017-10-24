@@ -15,3 +15,4 @@ A collection of functions that provide utility functionality for WordPress.
 * `add_inline_svg()`: Checks if SVG file exists before grabbing its contents
 * `get_acf_meta_value_by_acf_key()`: Use this when you know an ACF field key and a post ID, but the field is within a group.
 * `get_meta_key_from_meta_value()`: Perform a reverse lookup for a meta key based on a meta value.
+* `get_current_datetime()`: Gets a DateTime object set to WordPress's local timezone
