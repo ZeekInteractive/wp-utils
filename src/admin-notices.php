@@ -2,29 +2,30 @@
 
 namespace Zeek\WP_Util;
 
-function admin_notices( $notice = null ) {
+function admin_notices( $message = null, $type = null ) {
 	static $notices;
 
 	if ( null === $notices ) {
 		$notices = [];
 	}
 
-	if ( empty( $notice ) ) {
+	if ( empty( $message ) ) {
 		return $notices;
 	}
 
-	if ( ! in_array( $notice['key'], $notices ) ) {
-		$notices[ $notice['key'] ] = $notice;
-	}
+	$notices[] = [
+		'message' => $message,
+		'type'    => $type
+	];
 
 	return $notices;
 }
 
-function add_admin_notice( $notice ) {
-	admin_notices( $notice );
+function add_admin_notice( $notice, $type = 'info' ) {
+	admin_notices( $notice, $type );
 }
 
-add_action( 'admin_notices', function() {
+add_action( 'admin_notices', function () {
 
 	$admin_notices = admin_notices();
 
