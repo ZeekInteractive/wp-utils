@@ -281,7 +281,13 @@ function get_meta_key_from_meta_value( $post_id, $meta_value ) {
  * @return \DateTime
  */
 function get_current_datetime() {
-	$current_datetime = new \DateTime();
+	$timezone_string = get_option( 'timezone_string' );
+
+	if ( empty( $timezone_string ) ) {
+		$timezone_string = 'UTC';
+	}
+
+	$current_datetime = new \DateTime( 'now', new \DateTimeZone( $timezone_string ) );
 	
-	return $current_datetime->setTimestamp( current_time( 'timestamp' ) );
+	return $current_datetime;
 }
