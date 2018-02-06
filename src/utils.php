@@ -276,18 +276,27 @@ function get_meta_key_from_meta_value( $post_id, $meta_value ) {
 }
 
 /**
- * Gets a DateTime set to the WordPress's timezone 
- * 
+ * Gets a DateTime set to the WordPress's timezone
+ *
  * @return \DateTime
  */
 function get_current_datetime() {
+	$current_datetime = new \DateTime( 'now', get_site_timezone() );
+
+	return $current_datetime;
+}
+
+/**
+ * Gets a DateTimeZone object based on the site's timezone string.
+ *
+ * @return \DateTimeZone
+ */
+function get_site_timezone() {
 	$timezone_string = get_option( 'timezone_string' );
 
 	if ( empty( $timezone_string ) ) {
 		$timezone_string = 'UTC';
 	}
 
-	$current_datetime = new \DateTime( 'now', new \DateTimeZone( $timezone_string ) );
-	
-	return $current_datetime;
+	return new \DateTimeZone( $timezone_string );
 }
