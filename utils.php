@@ -1,4 +1,4 @@
 <?php
 
 require_once __DIR__ . '/src/utils.php';
-require_once __DIR__ . '/src/filters.php';
+require_once __DIR__ . '/src/behaviors.php';
