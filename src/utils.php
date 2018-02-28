@@ -331,3 +331,25 @@ function get_raw_post_meta_value( $post_id, $key ) {
 
 	return intval( $version );
 }
+
+
+/**
+ * Checks for and returns a term by the slug
+ *
+ * Initializes the term if it does not yet exist
+ *
+ * @param string $slug
+ * @param string $taxonomy
+ *
+ * @return bool
+ */
+function init_term( $slug, $taxonomy ) {
+
+	$term = get_term_by( 'slug', $slug, $taxonomy );
+
+	if ( ! empty( $term->ID ) ) {
+		return $term->ID;
+	}
+
+	return wp_insert_term( $slug, $taxonomy );
+}
