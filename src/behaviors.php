@@ -12,7 +12,7 @@ namespace Zeek\WP_Util;
  */
 add_filter( 'file_mod_allowed', function ( $disallow_file_mods, $context ) {
 
-	if ( isset( $_ENV['FILE_MOD_ALLOWED'] ) && true === $_ENV['FILE_MOD_ALLOWED'] ) {
+	if ( true === env( 'FILE_MOD_ALLOWED' ) ) {
 		return true;
 	}
 
