@@ -3,17 +3,6 @@
 namespace Zeek\WP_Util;
 
 /**
- * Returns the current URL.
- *
- * @link http://wordpress.stackexchange.com/a/126534
- *
- * @return string
- */
-function get_current_url() {
-	return home_url( add_query_arg( null, null ) );
-}
-
-/**
  * Returns the current URL, but without query args.
  *
  * @return string
@@ -103,7 +92,7 @@ function get_raw_option_value( $key ) {
  * - $_ENV (for setting via .env.php files)
  * - Constant (for setting via a define() call)
  * - Filter, utilizing a passed in filter
- * 
+ *
  * @param      $key
  * @param null $filter
  *
@@ -117,9 +106,9 @@ function get_env_value( $key, $filter = null ) {
 	if ( defined( $key ) ) {
 		return constant( $key );
 	}
-	
+
 	if ( function_exists( $filter ) ) {
-		return apply_filters( $filter, null ); 
+		return apply_filters( $filter, null );
 	}
 
 	return null;
@@ -128,7 +117,7 @@ function get_env_value( $key, $filter = null ) {
 /**
  * Allow to remove method for an hook when, it's a class method used and
  * class don't have variable, but you know the class name
- * 
+ *
  * @param string $hook_name
  * @param string $class_name
  * @param string $method_name
@@ -168,9 +157,9 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
  * Check to see if:
  * - ACF has been loaded and we can define our fields
  * - ACF_LITE is enabled
- * 
+ *
  * If ACF_LITE is enabled, ensure the ACF_LITE constant is also defined
- * 
+ *
  * @return bool
  */
 function is_acf_loadable() {
@@ -196,7 +185,7 @@ function is_acf_loadable() {
 
 /**
  * Safely load inline SVG file, if exists
- * 
+ *
  * @param null $path
  *
  * @return bool|null|string
@@ -217,9 +206,9 @@ function get_inline_svg( $path = null ) {
 
 /**
  * Use this when you know an ACF field key and a post ID, but the field is within a group.
- * 
+ *
  * This uses a non-performant lookup method, so use this with care.
- * 
+ *
  * @param $key
  * @param $post_id
  *
@@ -246,9 +235,9 @@ function get_acf_meta_value_by_acf_key( $key, $post_id ) {
 
 /**
  * Perform a reverse lookup for a meta key based on a meta value.
- * 
+ *
  * This is pretty non-performant, so take care in using this.
- * 
+ *
  * @param $post_id
  * @param $meta_value
  *
