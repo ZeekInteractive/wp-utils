@@ -23,6 +23,7 @@ class GetIDFromSlugTest extends \Codeception\Test\Unit {
 
 		$wpdb        = \Mockery::mock( '\WPDB' );
 		$wpdb->posts = 'wp_posts';
+		$wpdb->shouldReceive( 'prepare' );
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( 32 );
 
@@ -48,6 +49,8 @@ class GetIDFromSlugTest extends \Codeception\Test\Unit {
 		$wpdb = \Mockery::mock( '\WPDB' );
 
 		$wpdb->posts = 'wp_posts';
+		$wpdb->shouldReceive( 'prepare' );
+
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( false );
 

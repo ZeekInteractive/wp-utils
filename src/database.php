@@ -19,23 +19,20 @@ function get_id_from_slug( $slug, $post_type = 'post', $force = false ) {
 
 	if ( false === $id || $force ) {
 
-		$sql = sprintf( "
+		$id = $wpdb->get_var( $wpdb->prepare( "
 			SELECT 
 				ID
 			FROM 
-				%s
+				$wpdb->posts
 			WHERE 
 				post_status = 'publish' AND
 				post_name   = '%s' AND
 				post_type   = '%s'
 			LIMIT 1
 			",
-			$wpdb->posts,
 			sanitize_text_field( $slug ),
 			sanitize_text_field( $post_type )
-		);
-
-		$id = $wpdb->get_var( $sql );
+		) );
 
 		wp_cache_set( $cache_key, $id );
 	}
@@ -60,7 +57,7 @@ function get_id_from_slug( $slug, $post_type = 'post', $force = false ) {
 function get_meta_key_from_meta_value( $post_id, $meta_value ) {
 	global $wpdb;
 
-	$sql = $wpdb->prepare( "
+	return $wpdb->get_var( $wpdb->prepare( "
 			SELECT
 				pm.meta_key
 			FROM
@@ -71,11 +68,7 @@ function get_meta_key_from_meta_value( $post_id, $meta_value ) {
 			",
 		intval( $post_id ),
 		sanitize_text_field( $meta_value )
-	);
-
-	$result = $wpdb->get_var( $sql );
-
-	return $result;
+	) );
 }
 
 /**
@@ -89,7 +82,7 @@ function get_meta_key_from_meta_value( $post_id, $meta_value ) {
 function get_raw_post_meta_value( $post_id, $key ) {
 	global $wpdb;
 
-	$sql = $wpdb->prepare( "
+	return $wpdb->get_var( $wpdb->prepare( "
 			SELECT 
 				meta_value
 			FROM 
@@ -101,9 +94,7 @@ function get_raw_post_meta_value( $post_id, $key ) {
 			",
 		intval( $post_id ),
 		$key
-	);
-
-	return $wpdb->get_var( $sql );
+	) );
 }
 
 /**
@@ -117,7 +108,7 @@ function get_raw_post_meta_value( $post_id, $key ) {
 function get_raw_option_value( $key ) {
 	global $wpdb;
 
-	$sql = $wpdb->prepare( "
+	return $wpdb->get_var( $wpdb->prepare( "
 			SELECT 
 				option_value 
 			FROM 
@@ -127,7 +118,5 @@ function get_raw_option_value( $key ) {
 			LIMIT 1
 			",
 		$key
-	);
-
-	return $wpdb->get_var( $sql );
+	) );
 }
