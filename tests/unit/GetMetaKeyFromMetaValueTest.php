@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetMetaKeyFromMetaValueTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -18,7 +20,8 @@ class GetMetaKeyFromMetaValueTest extends \Codeception\Test\Unit {
 	public function testGetMetaKeyFromMetaValue() {
 		global $wpdb;
 
-		$wpdb        = Mockery::mock( '\WPDB' );
+		$wpdb = \Mockery::mock( '\WPDB' );
+
 		$wpdb->postmeta = 'wp_postmeta';
 
 		$sql = "SELECT
@@ -30,14 +33,14 @@ class GetMetaKeyFromMetaValueTest extends \Codeception\Test\Unit {
 					pm.meta_value = some_value_34";
 
 		$wpdb->shouldReceive( 'prepare' )
-			->andReturn( $sql );
+		     ->andReturn( $sql );
 
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( 'some_meta_key' );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
-		$meta_key = \Zeek\WP_Util\Database::get_meta_key_from_meta_value( 43, 'some_value_34' );
+		$meta_key = get_meta_key_from_meta_value( 43, 'some_value_34' );
 
 		$this->assertEquals( 'some_meta_key', $meta_key );
 	}

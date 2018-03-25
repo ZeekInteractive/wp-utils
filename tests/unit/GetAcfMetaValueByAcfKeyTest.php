@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -18,7 +20,7 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 	public function testGetAcfMetaValueByAcfKey() {
 		global $wpdb;
 
-		$wpdb           = Mockery::mock( '\WPDB' );
+		$wpdb           = \Mockery::mock( '\WPDB' );
 		$wpdb->postmeta = 'wp_postmeta';
 
 		$sql = "SELECT
@@ -35,9 +37,9 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( '_some_meta_key' );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
-		WP_Mock::userFunction( 'get_post_meta', [
+		\WP_Mock::userFunction( 'get_post_meta', [
 			'times' => 1,
 			'args' => [
 				43,
@@ -47,7 +49,7 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 			'return' => 'real_value',
 		] );
 
-		$meta_value = \Zeek\WP_Util\ACF::get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
+		$meta_value = get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
 
 		$this->assertEquals( 'real_value', $meta_value );
 	}
@@ -55,7 +57,7 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 	public function testGetAcfMetaValueReturnFalseWithEmptyLookupKey() {
 		global $wpdb;
 
-		$wpdb           = Mockery::mock( '\WPDB' );
+		$wpdb           = \Mockery::mock( '\WPDB' );
 		$wpdb->postmeta = 'wp_postmeta';
 
 		$sql = "SELECT
@@ -72,9 +74,9 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( '' );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
-		$meta_value = \Zeek\WP_Util\ACF::get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
+		$meta_value = get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
 
 		$this->assertSame( false, $meta_value );
 	}
@@ -82,7 +84,7 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 	public function testGetAcfValueInvalidKey() {
 		global $wpdb;
 
-		$wpdb           = Mockery::mock( '\WPDB' );
+		$wpdb           = \Mockery::mock( '\WPDB' );
 		$wpdb->postmeta = 'wp_postmeta';
 
 		$sql = "SELECT
@@ -99,9 +101,9 @@ class GetAcfMetaValueByAcfKeyTest extends \Codeception\Test\Unit {
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( 'some_meta_key' );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
-		$meta_value = \Zeek\WP_Util\ACF::get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
+		$meta_value = get_acf_meta_value_by_acf_key( '_some_meta_key', 43 );
 
 		$this->assertSame( false, $meta_value );
 	}

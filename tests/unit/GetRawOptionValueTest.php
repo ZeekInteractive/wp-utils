@@ -1,11 +1,12 @@
 <?php
 
-class GetRawOptionValueTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+namespace Zeek\WP_Util;
+
+class GetRawOptionValueTest extends \Codeception\Test\Unit {
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 
 	protected function _before() {
 		\WP_Mock::setUp();
@@ -19,7 +20,8 @@ class GetRawOptionValueTest extends \Codeception\Test\Unit
 	public function testGetRawOptionValue() {
 		global $wpdb;
 
-		$wpdb           = Mockery::mock( '\WPDB' );
+		$wpdb = \Mockery::mock( '\WPDB' );
+
 		$wpdb->options = 'wp_options';
 
 		$sql = "SELECT 
@@ -36,9 +38,8 @@ class GetRawOptionValueTest extends \Codeception\Test\Unit
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( 'an_option_value' );
 
-		$option_value = \Zeek\WP_Util\Database::get_raw_option_value( 'option_name_slug' );
+		$option_value = get_raw_option_value( 'option_name_slug' );
 
 		$this->assertSame( 'an_option_value', $option_value );
-
 	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetCurrentDateTimeTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -20,7 +22,7 @@ class GetCurrentDateTimeTest extends \Codeception\Test\Unit {
 			'return' => 'America/Chicago',
 		] );
 
-		$this->assertNotEmpty( \Zeek\WP_Util\Misc::get_current_datetime()->getTimestamp() );
+		$this->assertNotEmpty( get_current_datetime()->getTimestamp() );
 		;
 	}
 }

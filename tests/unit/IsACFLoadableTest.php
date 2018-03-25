@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class IsACFLoadableTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -8,6 +10,6 @@ class IsACFLoadableTest extends \Codeception\Test\Unit {
 
 	public function testIsACFLoadable() {
 
-		$this->assertEquals( false, \Zeek\WP_Util\Misc::is_acf_loadable() );
+		$this->assertEquals( false, is_acf_loadable() );
 	}
 }

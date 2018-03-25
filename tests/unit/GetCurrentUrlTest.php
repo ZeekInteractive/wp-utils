@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetCurrentUrlTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -27,6 +29,6 @@ class GetCurrentUrlTest extends \Codeception\Test\Unit {
 			'return' => ''
 		) );
 
-		$this->assertEquals( $url, \Zeek\WP_Util\Misc::get_current_url() );
+		$this->assertEquals( $url, get_current_url() );
 	}
 }

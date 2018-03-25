@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetCurrentUrlCleanTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -17,7 +19,6 @@ class GetCurrentUrlCleanTest extends \Codeception\Test\Unit {
 	public function testGetCurrentURLClean() {
 
 		$base_url = 'http://example.com/foo';
-		$url = $base_url . '?test=1234';
 
 		\WP_Mock::userFunction( 'home_url', array(
 			'times'  => 2,
@@ -29,6 +30,6 @@ class GetCurrentUrlCleanTest extends \Codeception\Test\Unit {
 			'return' => ''
 		) );
 
-		$this->assertEquals( $base_url, \Zeek\WP_Util\Misc::get_current_url_clean() );
+		$this->assertEquals( $base_url, get_current_url_clean() );
 	}
 }

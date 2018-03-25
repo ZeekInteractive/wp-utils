@@ -21,9 +21,7 @@
 		}
 	],
 	"autoload": {
-		"psr-4": {
-			"Zeek\\WP_Util\\": "src"
-		}
+		"files": ["package.php"]
 	},
 	"require-dev": {
 		"codeception/codeception": "2.3.9",
@@ -33,6 +31,7 @@
 	},
 	"require": {
 		"php": ">=7.0",
-		"arrilot/dotenv-php": "^1.0"
+		"arrilot/dotenv-php": "^1.0",
+		"a7/autoload": "2.0.9.1"
 	}
 }

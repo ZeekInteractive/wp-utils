@@ -1,5 +1,8 @@
 <?php
 
+namespace Zeek\WP_Util;
+
+
 class GetIDFromSlugTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
@@ -18,23 +21,23 @@ class GetIDFromSlugTest extends \Codeception\Test\Unit {
 	public function testGetIDFromSlug() {
 		global $wpdb;
 
-		$wpdb        = Mockery::mock( '\WPDB' );
+		$wpdb        = \Mockery::mock( '\WPDB' );
 		$wpdb->posts = 'wp_posts';
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( 32 );
 
-		WP_Mock::userFunction( 'wp_cache_set', [
+		\WP_Mock::userFunction( 'wp_cache_set', [
 			'return' => false
 		] );
 
-		WP_Mock::userFunction( 'wp_cache_get', [
+		\WP_Mock::userFunction( 'wp_cache_get', [
 			'return' => false
 		] );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
 
-		$id = \Zeek\WP_Util\Database::get_id_from_slug( 'test_post' );
+		$id = get_id_from_slug( 'test_post' );
 
 		$this->assertEquals( 32, $id );
 	}
@@ -42,23 +45,24 @@ class GetIDFromSlugTest extends \Codeception\Test\Unit {
 	public function testNoPostWithThatSlug() {
 		global $wpdb;
 
-		$wpdb        = Mockery::mock( '\WPDB' );
+		$wpdb = \Mockery::mock( '\WPDB' );
+
 		$wpdb->posts = 'wp_posts';
 		$wpdb->shouldReceive( 'get_var' )
 		     ->andReturn( false );
 
-		WP_Mock::userFunction( 'wp_cache_set', [
+		\WP_Mock::userFunction( 'wp_cache_set', [
 			'return' => false
 		] );
 
-		WP_Mock::userFunction( 'wp_cache_get', [
+		\WP_Mock::userFunction( 'wp_cache_get', [
 			'return' => false
 		] );
 
-		WP_Mock::passthruFunction( 'sanitize_text_field' );
+		\WP_Mock::passthruFunction( 'sanitize_text_field' );
 
 
-		$id = \Zeek\WP_Util\Database::get_id_from_slug( 'test_post' );
+		$id = get_id_from_slug( 'test_post' );
 
 		$this->assertEquals( null, $id );
 	}

@@ -1,5 +1,7 @@
 <?php
 
+namespace Zeek\WP_Util;
+
 class GetInlineSvgTest extends \Codeception\Test\Unit
 {
     /**
@@ -17,12 +19,12 @@ class GetInlineSvgTest extends \Codeception\Test\Unit
 
 	public function testGetInlineNonexistentSvg() {
 
-		WP_Mock::userFunction( 'get_template_directory', [
+		\WP_Mock::userFunction( 'get_template_directory', [
 			'times' => 1,
 			'return' => codecept_data_dir( '' )
 		] );
 
-		$svg = \Zeek\WP_Util\Misc::get_inline_svg( 'svg-nonexistent.svg' );
+		$svg = get_inline_svg( 'svg-nonexistent.svg' );
 
 		$this->assertEquals( null, $svg );
 	}
@@ -39,12 +41,12 @@ class GetInlineSvgTest extends \Codeception\Test\Unit
 		fwrite( $svg_file, 'test_content_of_svg' );
 		fclose( $svg_file );
 
-		WP_Mock::userFunction( 'get_template_directory', [
+		\WP_Mock::userFunction( 'get_template_directory', [
 			'times' => 1,
 			'return' => codecept_data_dir( '' )
 		] );
 
-		$svg = \Zeek\WP_Util\Misc::get_inline_svg( 'svg.svg' );
+		$svg = get_inline_svg( 'svg.svg' );
 
 		$this->assertEquals( 'test_content_of_svg', $svg );
 

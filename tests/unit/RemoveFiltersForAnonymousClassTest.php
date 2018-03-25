@@ -1,6 +1,6 @@
 <?php
 
-use \Zeek\WP_Util\Misc as Misc;
+namespace Zeek\WP_Util;
 
 class RemoveFiltersForAnonymousClassTest extends \Codeception\Test\Unit {
 	/**
@@ -21,7 +21,7 @@ class RemoveFiltersForAnonymousClassTest extends \Codeception\Test\Unit {
 
 		$wp_filter = null;
 
-		$remove_filter = \Zeek\WP_Util\Misc::remove_filters_for_anonymous_class( 'test_nonexistent_hook', 'NoClass', 'method_name', 10 );
+		$remove_filter = remove_filters_for_anonymous_class( 'test_nonexistent_hook', 'NoClass', 'method_name', 10 );
 
 		$this->assertSame( false, $remove_filter );
 	}
@@ -51,7 +51,7 @@ class RemoveFiltersForAnonymousClassTest extends \Codeception\Test\Unit {
 
 		$wp_filter['test_hook'] = $test_hook;
 
-		$remove_filter = Misc::remove_filters_for_anonymous_class( 'test_hook', $test_class_name, 'test_method', 10 );
+		$remove_filter = remove_filters_for_anonymous_class( 'test_hook', $test_class_name, 'test_method', 10 );
 
 		$this->assertEquals( true, $remove_filter );
 	}
