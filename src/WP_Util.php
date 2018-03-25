@@ -48,4 +48,30 @@ class WP_Util {
 
 		return wp_insert_term( $slug, $taxonomy );
 	}
+
+	/**
+	 * Gets a DateTimeZone object based on the site's timezone string.
+	 *
+	 * @return \DateTimeZone
+	 */
+	static function get_site_timezone() {
+		$timezone_string = get_option( 'timezone_string' );
+
+		if ( empty( $timezone_string ) ) {
+			$timezone_string = 'UTC';
+		}
+
+		return new \DateTimeZone( $timezone_string );
+	}
+
+	/**
+	 * Gets a DateTime set to the WordPress's timezone
+	 *
+	 * @return \DateTime
+	 */
+	static function get_current_datetime() {
+		$current_datetime = new \DateTime( 'now', self::get_site_timezone() );
+
+		return $current_datetime;
+	}
 }
