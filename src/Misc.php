@@ -2,7 +2,7 @@
 
 namespace Zeek\WP_Util;
 
-class WP_Util {
+class Misc {
 
 	/**
 	 * Returns the current URL.

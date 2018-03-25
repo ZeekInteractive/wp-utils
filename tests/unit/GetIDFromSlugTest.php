@@ -12,6 +12,7 @@ class GetIDFromSlugTest extends \Codeception\Test\Unit {
 
 	protected function _after() {
 		\WP_Mock::tearDown();
+		\Mockery::close();
 	}
 
 	public function testGetIDFromSlug() {

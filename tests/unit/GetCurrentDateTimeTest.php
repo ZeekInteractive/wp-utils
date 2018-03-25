@@ -20,7 +20,7 @@ class GetCurrentDateTimeTest extends \Codeception\Test\Unit {
 			'return' => 'America/Chicago',
 		] );
 
-		$this->assertNotEmpty( \Zeek\WP_Util\WP_Util::get_current_datetime()->getTimestamp() );
+		$this->assertNotEmpty( \Zeek\WP_Util\Misc::get_current_datetime()->getTimestamp() );
 		;
 	}
 }

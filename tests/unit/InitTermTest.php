@@ -29,7 +29,7 @@ class InitTermTest extends \Codeception\Test\Unit {
 			'return' => $term_mock
 		) );
 
-		$term = \Zeek\WP_Util\WP_Util::init_term( 'test_slug', 'example_taxonomy' );
+		$term = \Zeek\WP_Util\Misc::init_term( 'test_slug', 'example_taxonomy' );
 
 		$this->assertEquals( $term_mock->ID, $term );
 	}
@@ -62,7 +62,7 @@ class InitTermTest extends \Codeception\Test\Unit {
 			],
 		] );
 
-		$term = \Zeek\WP_Util\WP_Util::init_term( 'test_slug', 'example_taxonomy' );
+		$term = \Zeek\WP_Util\Misc::init_term( 'test_slug', 'example_taxonomy' );
 
 		$this->assertEquals( [
 			'term_id' => 123,

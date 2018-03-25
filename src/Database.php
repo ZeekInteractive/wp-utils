@@ -47,4 +47,35 @@ class Database {
 
 		return intval( $id );
 	}
+
+	/**
+	 * Perform a reverse lookup for a meta key based on a meta value.
+	 *
+	 * This is pretty non-performant, so take care in using this.
+	 *
+	 * @param $post_id
+	 * @param $meta_value
+	 *
+	 * @return null|string
+	 */
+	static function get_meta_key_from_meta_value( $post_id, $meta_value ) {
+		global $wpdb;
+
+		$sql = $wpdb->prepare( "
+			SELECT
+				pm.meta_key
+			FROM
+				$wpdb->postmeta as pm
+			WHERE
+				pm.post_id = %d AND
+				pm.meta_value = %s
+			",
+			intval( $post_id ),
+			sanitize_text_field( $meta_value )
+		);
+
+		$result = $wpdb->get_var( $sql );
+
+		return $result;
+	}
 }

@@ -23,7 +23,7 @@ class GetSiteTimeZoneTest extends \Codeception\Test\Unit
 			'return' => 'America/Chicago',
 		] );
 
-		$site_timezone = \Zeek\WP_Util\WP_Util::get_site_timezone();
+		$site_timezone = \Zeek\WP_Util\Misc::get_site_timezone();
 
 		$this->assertEquals( $assert_timezone, $site_timezone );
 	}
@@ -36,7 +36,7 @@ class GetSiteTimeZoneTest extends \Codeception\Test\Unit
 			'return' => '',
 		] );
 
-		$site_timezone = \Zeek\WP_Util\WP_Util::get_site_timezone();
+		$site_timezone = \Zeek\WP_Util\Misc::get_site_timezone();
 
 		$this->assertEquals( $assert_timezone, $site_timezone );
 	}

@@ -8,6 +8,6 @@ class IsACFLoadableTest extends \Codeception\Test\Unit {
 
 	public function testIsACFLoadable() {
 
-		$this->assertEquals( false, \Zeek\WP_Util\WP_Util::is_acf_loadable() );
+		$this->assertEquals( false, \Zeek\WP_Util\Misc::is_acf_loadable() );
 	}
 }

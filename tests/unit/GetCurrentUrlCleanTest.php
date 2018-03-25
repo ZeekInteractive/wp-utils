@@ -29,6 +29,6 @@ class GetCurrentUrlCleanTest extends \Codeception\Test\Unit {
 			'return' => ''
 		) );
 
-		$this->assertEquals( $base_url, \Zeek\WP_Util\WP_Util::get_current_url_clean() );
+		$this->assertEquals( $base_url, \Zeek\WP_Util\Misc::get_current_url_clean() );
 	}
 }

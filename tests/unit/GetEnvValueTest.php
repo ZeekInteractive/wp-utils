@@ -18,18 +18,18 @@ class GetEnvValueTest extends \Codeception\Test\Unit {
 
 		$_ENV[ 'SOME_ENV_KEY_1' ] = 'somevalue';
 
-		$this->assertEquals( 'somevalue', \Zeek\WP_Util\WP_Util::get_env_value( 'SOME_ENV_KEY_1' ) );
+		$this->assertEquals( 'somevalue', \Zeek\WP_Util\Misc::get_env_value( 'SOME_ENV_KEY_1' ) );
 	}
 
 	public function testGetEnvValueFromConstant() {
 
 		define( 'SOME_ENV_KEY_2', 'another_value' );
 
-		$this->assertEquals( 'another_value', \Zeek\WP_Util\WP_Util::get_env_value( 'SOME_ENV_KEY_2' ) );
+		$this->assertEquals( 'another_value', \Zeek\WP_Util\Misc::get_env_value( 'SOME_ENV_KEY_2' ) );
 	}
 
 	public function testGetNonexistentEnvValue() {
 
-		$this->assertEquals( null, \Zeek\WP_Util\WP_Util::get_env_value( 'SOME_ENV_KEY_4' ) );
+		$this->assertEquals( null, \Zeek\WP_Util\Misc::get_env_value( 'SOME_ENV_KEY_4' ) );
 	}
 }
