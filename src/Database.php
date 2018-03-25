@@ -78,4 +78,32 @@ class Database {
 
 		return $result;
 	}
+
+	/**
+	 * Performs a very direct, simple query to the WordPress Post Meta table
+	 * that bypasses normal WP caching
+	 *
+	 * @param $key
+	 *
+	 * @return int
+	 */
+	static function get_raw_post_meta_value( $post_id, $key ) {
+		global $wpdb;
+
+		$sql = $wpdb->prepare( "
+			SELECT 
+				meta_value
+			FROM 
+				{$wpdb->postmeta}
+			WHERE 
+				post_id = %d AND
+				meta_key = %s
+			LIMIT 1
+			",
+			intval( $post_id ),
+			$key
+		);
+
+		return $wpdb->get_var( $sql );
+	}
 }
