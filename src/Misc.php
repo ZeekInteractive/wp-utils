@@ -150,13 +150,18 @@ class Misc {
 
 		// Loop on filters registered
 		foreach ( (array) $wp_filter[ $hook_name ]->callbacks[ $priority ] as $unique_id => $filter_array ) {
+			
 			// Test if filter is an array ! (always for class/method)
 			if ( isset( $filter_array['function'] ) && is_array( $filter_array['function'] ) ) {
 
 				// Test if object is a class, class and method is equal to param !
 				if ( is_object( $filter_array['function'][0] ) && get_class( $filter_array['function'][0] ) && get_class( $filter_array['function'][0] ) == $class_name && $filter_array['function'][1] == $method_name ) {
 
-					// Test for WordPress >= 4.7 WP_Hook class (https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/)
+					/**
+					 * Remove the callback now that we've found it's unique ID
+					 * This method only works on WP 4.7+ due to the change to hooks/filters
+					 * to WP in 4.7
+					 */
 					unset( $wp_filter[ $hook_name ]->callbacks[ $priority ][ $unique_id ] );
 					$status = true;
 				}
