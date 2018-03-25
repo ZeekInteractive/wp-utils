@@ -1,4 +1,8 @@
 # WordPress Utils
+[![Build Status](https://travis-ci.com/ZeekInteractive/wp-utils.svg?token=G7VpgBxZppY89CGiy3Pn&branch=develop)](https://travis-ci.com/ZeekInteractive/wp-utils)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0cea33cc3eb4454ab05b31bf87a721d8)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZeekInteractive/wp-utils&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/0cea33cc3eb4454ab05b31bf87a721d8)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=ZeekInteractive/wp-utils&utm_campaign=Badge_Coverage)
+
 
 A collection of functions that provide utility functionality for WordPress.
 
