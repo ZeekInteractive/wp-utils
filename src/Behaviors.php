@@ -14,13 +14,14 @@ class Behaviors {
 		 *
 		 * This can be overridden by setting an environmental variable of 'FILE_MOD_ALLOWED'
 		 */
-		add_filter( 'file_mod_allowed', function ( $disallow_file_mods, $context ) {
+		add_filter( 'file_mod_allowed', [ $this, 'file_mod_allowed' ], 999 );
+	}
 
-			if ( true === env( 'FILE_MOD_ALLOWED' ) ) {
-				return true;
-			}
+	function file_mod_allowed() {
+		if ( true === env( 'FILE_MOD_ALLOWED' ) ) {
+			return true;
+		}
 
-			return false;
-		}, 999, 2 );
+		return false;
 	}
 }

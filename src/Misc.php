@@ -150,7 +150,7 @@ class Misc {
 
 		// Loop on filters registered
 		foreach ( (array) $wp_filter[ $hook_name ]->callbacks[ $priority ] as $unique_id => $filter_array ) {
-			
+
 			// Test if filter is an array ! (always for class/method)
 			if ( isset( $filter_array['function'] ) && is_array( $filter_array['function'] ) ) {
 
