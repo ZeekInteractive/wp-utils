@@ -1,4 +1,4 @@
-<?php declare( strict_types = 1 );
+<?php
 
 namespace Zeek\WP_Util;
 
@@ -95,5 +95,14 @@ class WP_Util {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @deprecated 2.0.0 Use action hook 'acf/init' to register field and ENV value of 'acf_lite' to set Lite mode
+	 *
+	 * @return bool
+	 */
+	static function is_acf_loadable() {
+		return false;
 	}
 }

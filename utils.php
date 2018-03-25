@@ -3,50 +3,6 @@
 namespace Zeek\WP_Util;
 
 /**
- * Performs a reverse lookup of a post based on it's slug
- * Stores in whatever default cache is available in order to minimize duplicate
- * lookups (as this can get expensive)
- *
- * @return int|null
- */
-function get_id_from_slug( $slug, $post_type = 'post', $force = false ) {
-
-	global $wpdb;
-
-	$cache_key = sprintf( 'post_%s_id', md5( $post_type . $slug ) );
-	$id        = wp_cache_get( $cache_key );
-
-	if ( false === $id || $force ) {
-
-		$sql = sprintf( "
-			SELECT 
-				ID
-			FROM 
-				%s
-			WHERE 
-				post_status = 'publish' AND
-				post_name   = '%s' AND
-				post_type   = '%s'
-			LIMIT 1
-			",
-			$wpdb->posts,
-			sanitize_text_field( $slug ),
-			sanitize_text_field( $post_type )
-		);
-
-		$id = $wpdb->get_var( $sql );
-
-		wp_cache_set( $cache_key, $id );
-	}
-
-	if ( empty( $id ) ) {
-		return null;
-	}
-
-	return intval( $id );
-}
-
-/**
  * Performs a very direct, simple query to the WordPress Options table
  * that bypasses normal WP caching
  *
@@ -112,36 +68,6 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
 
 	return false;
 }
-
-/**
- * Check to see if:
- * - ACF has been loaded and we can define our fields
- * - ACF_LITE is enabled
- *
- * If ACF_LITE is enabled, ensure the ACF_LITE constant is also defined
- *
- * @return bool
- */
-function is_acf_loadable() {
-
-	// Bail if ACF is not found or deactivated
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return false;
-	}
-
-	// Only load our hardcoded fields if ACF Lite is off
-	if ( true !== get_env_value( 'ACF_LITE' ) ) {
-		return false;
-	}
-
-	// If ACF_LITE was defined in a manner different from a constant, set the constant so that ACF turns on LITE mode
-	if ( ! defined( 'ACF_LITE' ) ) {
-		define( 'ACF_LITE', true );
-	}
-
-	return true;
-}
-
 
 /**
  * Safely load inline SVG file, if exists
