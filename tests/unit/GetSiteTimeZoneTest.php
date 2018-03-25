@@ -33,7 +33,7 @@ class GetSiteTimeZoneTest extends \Codeception\Test\Unit
 
 		\WP_Mock::userFunction( 'get_option', [
 			'times'  => 1,
-			'return' => 'UTC',
+			'return' => '',
 		] );
 
 		$site_timezone = \Zeek\WP_Util\WP_Util::get_site_timezone();
