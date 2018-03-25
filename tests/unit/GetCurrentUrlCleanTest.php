@@ -1,6 +1,6 @@
 <?php
 
-class GetCurrentUrlTest extends \Codeception\Test\Unit {
+class GetCurrentUrlCleanTest extends \Codeception\Test\Unit {
 	/**
 	 * @var \UnitTester
 	 */
@@ -14,12 +14,14 @@ class GetCurrentUrlTest extends \Codeception\Test\Unit {
 		\WP_Mock::tearDown();
 	}
 
-	public function testGetCurrentUrl() {
-		$url = 'http://example.com/foo';
+	public function testGetCurrentURLClean() {
+
+		$base_url = 'http://example.com/foo';
+		$url = $base_url . '?test=1234';
 
 		\WP_Mock::userFunction( 'home_url', array(
-			'times'  => 1,
-			'return' => $url
+			'times'  => 2,
+			'return' => $base_url
 		) );
 
 		\WP_Mock::userFunction( 'add_query_arg', array(
@@ -27,6 +29,6 @@ class GetCurrentUrlTest extends \Codeception\Test\Unit {
 			'return' => ''
 		) );
 
-		$this->assertEquals( $url, \Zeek\WP_Util\WP_Util::get_current_url() );
+		$this->assertEquals( $base_url, \Zeek\WP_Util\WP_Util::get_current_url_clean() );
 	}
 }

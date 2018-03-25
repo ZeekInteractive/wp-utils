@@ -1,0 +1,534 @@
+<?php
+$coverage = new SebastianBergmann\CodeCoverage\CodeCoverage;
+$coverage->setData(array (
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/WP_Util.php' => 
+  array (
+    15 => 
+    array (
+      0 => 'GetCurrentUrlCleanTest::testGetCurrentURLClean',
+      1 => 'GetCurrentUrlTest::testGetCurrentUrl',
+    ),
+    16 => NULL,
+    24 => 
+    array (
+      0 => 'GetCurrentUrlCleanTest::testGetCurrentURLClean',
+    ),
+    26 => 
+    array (
+      0 => 'GetCurrentUrlCleanTest::testGetCurrentURLClean',
+    ),
+    28 => 
+    array (
+      0 => 'GetCurrentUrlCleanTest::testGetCurrentURLClean',
+    ),
+    29 => NULL,
+    43 => 
+    array (
+      0 => 'InitTermTest::testTermAlreadyInitialized',
+      1 => 'InitTermTest::testInsertNewTerm',
+    ),
+    45 => 
+    array (
+      0 => 'InitTermTest::testTermAlreadyInitialized',
+      1 => 'InitTermTest::testInsertNewTerm',
+    ),
+    46 => 
+    array (
+      0 => 'InitTermTest::testTermAlreadyInitialized',
+    ),
+    49 => 
+    array (
+      0 => 'InitTermTest::testInsertNewTerm',
+    ),
+    50 => NULL,
+  ),
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/Behaviors.php' => 
+  array (
+    19 => 
+    array (
+    ),
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+  ),
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/utils.php' => 
+  array (
+    14 => 
+    array (
+    ),
+    16 => 
+    array (
+    ),
+    17 => 
+    array (
+    ),
+    19 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+    26 => 
+    array (
+    ),
+    27 => 
+    array (
+    ),
+    28 => 
+    array (
+    ),
+    29 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    33 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    40 => 
+    array (
+    ),
+    42 => 
+    array (
+    ),
+    43 => 
+    array (
+    ),
+    44 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    47 => 
+    array (
+    ),
+    58 => 
+    array (
+    ),
+    60 => 
+    array (
+    ),
+    61 => 
+    array (
+    ),
+    62 => 
+    array (
+    ),
+    63 => 
+    array (
+    ),
+    64 => 
+    array (
+    ),
+    65 => 
+    array (
+    ),
+    66 => 
+    array (
+    ),
+    67 => 
+    array (
+    ),
+    68 => 
+    array (
+    ),
+    69 => 
+    array (
+    ),
+    70 => 
+    array (
+    ),
+    72 => 
+    array (
+    ),
+    74 => 
+    array (
+    ),
+    75 => 
+    array (
+    ),
+    89 => 
+    array (
+    ),
+    90 => 
+    array (
+    ),
+    91 => 
+    array (
+    ),
+    93 => 
+    array (
+    ),
+    94 => 
+    array (
+    ),
+    95 => 
+    array (
+    ),
+    97 => 
+    array (
+    ),
+    98 => 
+    array (
+    ),
+    99 => 
+    array (
+    ),
+    101 => 
+    array (
+    ),
+    102 => 
+    array (
+    ),
+    116 => 
+    array (
+    ),
+    119 => 
+    array (
+    ),
+    120 => 
+    array (
+    ),
+    121 => 
+    array (
+    ),
+    124 => 
+    array (
+    ),
+    126 => 
+    array (
+    ),
+    128 => 
+    array (
+    ),
+    130 => 
+    array (
+    ),
+    131 => 
+    array (
+    ),
+    132 => 
+    array (
+    ),
+    133 => 
+    array (
+    ),
+    134 => 
+    array (
+    ),
+    135 => 
+    array (
+    ),
+    136 => 
+    array (
+    ),
+    138 => 
+    array (
+    ),
+    140 => 
+    array (
+    ),
+    141 => 
+    array (
+    ),
+    155 => 
+    array (
+    ),
+    156 => 
+    array (
+    ),
+    157 => 
+    array (
+    ),
+    160 => 
+    array (
+    ),
+    161 => 
+    array (
+    ),
+    162 => 
+    array (
+    ),
+    165 => 
+    array (
+    ),
+    166 => 
+    array (
+    ),
+    167 => 
+    array (
+    ),
+    169 => 
+    array (
+    ),
+    170 => 
+    array (
+    ),
+    182 => 
+    array (
+    ),
+    183 => 
+    array (
+    ),
+    184 => 
+    array (
+    ),
+    185 => 
+    array (
+    ),
+    187 => 
+    array (
+    ),
+    188 => 
+    array (
+    ),
+    189 => 
+    array (
+    ),
+    191 => 
+    array (
+    ),
+    192 => 
+    array (
+    ),
+    206 => 
+    array (
+    ),
+    208 => 
+    array (
+    ),
+    209 => 
+    array (
+    ),
+    210 => 
+    array (
+    ),
+    212 => 
+    array (
+    ),
+    213 => 
+    array (
+    ),
+    214 => 
+    array (
+    ),
+    216 => 
+    array (
+    ),
+    218 => 
+    array (
+    ),
+    220 => 
+    array (
+    ),
+    221 => 
+    array (
+    ),
+    234 => 
+    array (
+    ),
+    236 => 
+    array (
+    ),
+    237 => 
+    array (
+    ),
+    238 => 
+    array (
+    ),
+    239 => 
+    array (
+    ),
+    240 => 
+    array (
+    ),
+    241 => 
+    array (
+    ),
+    242 => 
+    array (
+    ),
+    243 => 
+    array (
+    ),
+    244 => 
+    array (
+    ),
+    245 => 
+    array (
+    ),
+    246 => 
+    array (
+    ),
+    247 => 
+    array (
+    ),
+    249 => 
+    array (
+    ),
+    251 => 
+    array (
+    ),
+    252 => 
+    array (
+    ),
+    260 => 
+    array (
+    ),
+    262 => 
+    array (
+    ),
+    263 => 
+    array (
+    ),
+    271 => 
+    array (
+    ),
+    273 => 
+    array (
+    ),
+    274 => 
+    array (
+    ),
+    275 => 
+    array (
+    ),
+    277 => 
+    array (
+    ),
+    278 => 
+    array (
+    ),
+    290 => 
+    array (
+    ),
+    292 => 
+    array (
+    ),
+    293 => 
+    array (
+    ),
+    294 => 
+    array (
+    ),
+    295 => 
+    array (
+    ),
+    296 => 
+    array (
+    ),
+    297 => 
+    array (
+    ),
+    298 => 
+    array (
+    ),
+    299 => 
+    array (
+    ),
+    300 => 
+    array (
+    ),
+    301 => 
+    array (
+    ),
+    302 => 
+    array (
+    ),
+    303 => 
+    array (
+    ),
+    304 => 
+    array (
+    ),
+    306 => 
+    array (
+    ),
+    308 => 
+    array (
+    ),
+    309 => 
+    array (
+    ),
+  ),
+));
+$coverage->setTests(array (
+  'GetCurrentUrlCleanTest::testGetCurrentURLClean' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'GetCurrentUrlTest::testGetCurrentUrl' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'InitTermTest::testTermAlreadyInitialized' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'InitTermTest::testInsertNewTerm' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UNCOVERED_FILES_FROM_WHITELIST' => 
+  array (
+    'size' => 'unknown',
+    'status' => NULL,
+  ),
+));
+
+$filter = $coverage->filter();
+$filter->setWhitelistedFiles(array (
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/Behaviors.php' => true,
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/utils.php' => true,
+  '/Users/tyrun/dev/sites/php-packages/wp-utils/src/WP_Util.php' => true,
+));
+
+return $coverage;
