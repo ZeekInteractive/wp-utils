@@ -106,4 +106,30 @@ class Database {
 
 		return $wpdb->get_var( $sql );
 	}
+
+	/**
+	 * Performs a very direct, simple query to the WordPress Options table
+	 * that bypasses normal WP caching
+	 *
+	 * @param $key
+	 *
+	 * @return int
+	 */
+	static function get_raw_option_value( $key ) {
+		global $wpdb;
+
+		$sql = $wpdb->prepare( "
+			SELECT 
+				option_value 
+			FROM 
+				{$wpdb->options}
+			WHERE 
+				option_name = %s
+			LIMIT 1
+			",
+			$key
+		);
+
+		return $wpdb->get_var( $sql );
+	}
 }

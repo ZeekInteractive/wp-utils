@@ -3,34 +3,6 @@
 namespace Zeek\WP_Util;
 
 /**
- * Performs a very direct, simple query to the WordPress Options table
- * that bypasses normal WP caching
- *
- * @param $key
- *
- * @return int
- */
-function get_raw_option_value( $key ) {
-	global $wpdb;
-
-	$sql = $wpdb->prepare( "
-		SELECT 
-			option_value 
-		FROM 
-			{$wpdb->options}
-		WHERE 
-			option_name = %s
-		LIMIT 1
-		",
-		$key
-	);
-
-	$version = $wpdb->get_var( $sql );
-
-	return intval( $version );
-}
-
-/**
  * Allow to remove method for an hook when, it's a class method used and
  * class don't have variable, but you know the class name
  *
