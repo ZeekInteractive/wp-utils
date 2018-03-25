@@ -40,24 +40,3 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
 
 	return false;
 }
-
-/**
- * Safely load inline SVG file, if exists
- *
- * @param null $path
- *
- * @return bool|null|string
- */
-function get_inline_svg( $path = null ) {
-
-	$full_path = sprintf( '%s/%s',
-		get_template_directory(),
-		$path
-	);
-
-	if ( ! file_exists( $full_path ) ) {
-		return null;
-	}
-
-	return file_get_contents( $full_path );
-}

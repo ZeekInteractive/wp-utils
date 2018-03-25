@@ -105,4 +105,25 @@ class Misc {
 	static function is_acf_loadable() {
 		return false;
 	}
+
+	/**
+	 * Safely load inline SVG file, if exists
+	 *
+	 * @param null $path
+	 *
+	 * @return bool|null|string
+	 */
+	static function get_inline_svg( $path = null ) {
+
+		$full_path = sprintf( '%s/%s',
+			get_template_directory(),
+			$path
+		);
+
+		if ( ! file_exists( $full_path ) ) {
+			return null;
+		}
+
+		return file_get_contents( $full_path );
+	}
 }
