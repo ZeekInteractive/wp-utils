@@ -7,19 +7,31 @@
 		{
 			"name": "Philip Newcomer",
 			"email": "philip@zeek.com",
-			"homepage": "http://zeek.com"
+			"homepage": "https://philipnewcomer.net"
 		},
 		{
 			"name": "Aaron Holbrook",
 			"email": "aaron@zeek.com",
-			"homepage": "http://zeek.com"
+			"homepage": "https://aaronjholbrook.com"
+		},
+		{
+			"name": "Zeek Interactive",
+			"email": "info@zeek.com",
+			"homepage": "https://zeek.com"
 		}
 	],
-	"require": {
-		"php": ">=5.6",
-		"arrilot/dotenv-php": "^1.0"
-	},
 	"autoload": {
-		"files": [ "utils.php" ]
+		"files": ["package.php"]
+	},
+	"require-dev": {
+		"codeception/codeception": "2.3.9",
+		"codacy/coverage": "^1.4",
+		"10up/wp_mock": "^0.3.0",
+		"mockery/mockery": "^1.0"
+	},
+	"require": {
+		"php": ">=7.0",
+		"arrilot/dotenv-php": "^1.0",
+		"a7/autoload": "2.0.9.1"
 	}
 }
