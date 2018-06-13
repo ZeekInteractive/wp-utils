@@ -16,7 +16,7 @@ class ErrorHandling {
 			return self::$client;
 		}
 
-		self::$client = new \Raven_Client( get_env_value( 'SENTRY_URL' ) );
+		self::$client = new \Raven_Client( $sentry_url );
 		self::$client->install();
 
 		return self::$client;
