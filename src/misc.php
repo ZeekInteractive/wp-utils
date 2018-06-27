@@ -87,6 +87,10 @@ function is_acf_loadable() {
  */
 function get_inline_svg( $path = null ) {
 
+	if ( file_exists( $path ) ) {
+		return file_get_contents( $path );
+	}
+	
 	$full_path = sprintf( '%s/%s',
 		get_template_directory(),
 		$path
