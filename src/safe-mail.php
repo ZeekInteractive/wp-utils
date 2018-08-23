@@ -16,12 +16,12 @@ function safe_mail( $to, $subject, $message, $headers = '', $attachments = [] ) 
 
 	// Looks like an invalid email address
 	if ( count( $email_parts ) !== 2 ) {
-		return false;
+		throw new \Exception( "Unable to detect a valid email address: {$to}" );
 	}
 
-	// Couldn't find the TLD in the safe list, let's quietly bypass sending an actual mail and pretend like it worked
+	// Couldn't find the TLD in the safe list, throw an exception and bubble this up the chain
 	if ( false === array_search( $email_parts[1], $safe_tlds ) ) {
-		return true;
+		throw new \Exception( "Did not send email to {$to} as it is not on the safe email list." );
 	}
 
 	// Found a safe TLD, let's go ahead and let it send
