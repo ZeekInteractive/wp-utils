@@ -217,6 +217,27 @@ function wpdb_update( string $table, array $data, array $where, $format = null, 
 }
 
 /**
+ * Prepares a SQL query for safe execution. Uses sprintf()-like syntax.
+ *
+ * See $wpdb->prepare documentation.
+ *
+ * @param string      $query    Query statement with sprintf()-like placeholders
+ * @param array|mixed $args     The array of variables to substitute into the query's placeholders if being called with an array of arguments,
+ *                              or the first variable to substitute into the query's placeholders if being called with individual arguments.
+ * @param mixed       $args,... further variables to substitute into the query's placeholders if being called wih individual arguments.
+ *
+ * @return string Sanitized query string.
+ */
+function wpdb_prepare( string $query, $args ) {
+	global $wpdb;
+
+	$args = func_get_args();
+	array_shift( $args );
+
+	return call_user_func_array( [ $wpdb, 'prepare' ], $args );
+}
+
+/**
  * Helper function used by the various `wpdb_*` functions which calls the specified $wpdb method with the given arguments
  *
  * Does not output errors to the page, but throws an exception if an error occurs.
