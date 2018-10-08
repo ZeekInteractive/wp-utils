@@ -24,6 +24,11 @@ Use this when you know an ACF field key and a post ID, but the field is within a
 ### `is_acf_loadable()` (Deprecated)
 Check to see if ACF is loadable and if ACF_LITE is true.
 
+## Users
+
+### `generate_unique_username( $username )`
+Appends a counter to the given username which is incremented until there is no user with that username.
+
 ## Misc
 
 ### `get_current_url()`
