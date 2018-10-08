@@ -221,20 +221,16 @@ function wpdb_update( string $table, array $data, array $where, $format = null, 
  *
  * See $wpdb->prepare documentation.
  *
- * @param string      $query    Query statement with sprintf()-like placeholders
- * @param array|mixed $args     The array of variables to substitute into the query's placeholders if being called with an array of arguments,
- *                              or the first variable to substitute into the query's placeholders if being called with individual arguments.
- * @param mixed       $args,... further variables to substitute into the query's placeholders if being called wih individual arguments.
+ * @param string $query    Query statement with sprintf()-like placeholders
+ * @param mixed  $args,... The array of variables to substitute into the query's placeholders if being called with an array of arguments,
+ *                         or the first variable to substitute into the query's placeholders if being called with individual arguments.
  *
  * @return string Sanitized query string.
  */
 function wpdb_prepare( string $query, $args ) {
 	global $wpdb;
 
-	$args = func_get_args();
-	array_shift( $args );
-
-	return call_user_func_array( [ $wpdb, 'prepare' ], $args );
+	return call_user_func_array( [ $wpdb, 'prepare' ], func_get_args() );
 }
 
 /**
