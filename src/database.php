@@ -131,10 +131,11 @@ function does_table_exist( $table ) {
 	) );
 }
 
-function get_var_from_table_with_id( $table, $id, $column ) {
+function get_var_from_table( $table, $select, $where_col, $where_val ) {
 	global $wpdb;
 
 	$table = $wpdb->prefix . sanitize_text_field( $table );
+	$where_col = sanitize_text_field( $where_col );
 
 	return wpdb_get_var( $wpdb->prepare ("
 		SELECT
@@ -142,9 +143,9 @@ function get_var_from_table_with_id( $table, $id, $column ) {
 		FROM
 			{$table}
 		WHERE
-			id = %d
+			{$where_col} = %s
 		",
-		$column,
-		$id
+		$select,
+		$where_val
 	) );
 }
