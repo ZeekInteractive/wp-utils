@@ -130,3 +130,21 @@ function does_table_exist( $table ) {
 		$table
 	) );
 }
+
+function get_var_from_table_with_id( $table, $id, $column ) {
+	global $wpdb;
+
+	$table = $wpdb->prefix . sanitize_text_field( $table );
+
+	return wpdb_get_var( $wpdb->prepare ("
+		SELECT
+			%s
+		FROM
+			{$table}
+		WHERE
+			id = %d
+		",
+		$column,
+		$id
+	) );
+}
