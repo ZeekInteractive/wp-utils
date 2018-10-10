@@ -120,3 +120,13 @@ function get_raw_option_value( $key ) {
 		$key
 	) );
 }
+
+function does_table_exist( $table ) {
+	global $wpdb;
+
+	return $wpdb->query( $wpdb->prepare( "
+			SHOW TABLES LIKE %s
+		",
+		$table
+	) );
+}
