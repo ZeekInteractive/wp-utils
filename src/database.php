@@ -127,25 +127,25 @@ function does_table_exist( $table ) {
 	return $wpdb->query( $wpdb->prepare( "
 			SHOW TABLES LIKE %s
 		",
-		$table
+		$wpdb->prefix . $table
 	) );
 }
 
 function get_var_from_table( $table, $select, $where_col, $where_val ) {
 	global $wpdb;
 
+	$select = sanitize_text_field( $select );
 	$table = $wpdb->prefix . sanitize_text_field( $table );
 	$where_col = sanitize_text_field( $where_col );
 
 	return wpdb_get_var( $wpdb->prepare ("
 		SELECT
-			%s
+			{$select}
 		FROM
 			{$table}
 		WHERE
 			{$where_col} = %s
 		",
-		$select,
 		$where_val
 	) );
 }
