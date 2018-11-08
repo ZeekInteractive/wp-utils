@@ -22,11 +22,18 @@ class ErrorHandling {
 		return self::$client;
 	}
 
+	/**
+	 * @return \Raven_Client
+	 */
 	static function get_client() {
 		if ( empty( self::$client ) ) {
 			self::init();
 		}
 
 		return self::$client;
+	}
+	
+	static function capture( $exception ) {
+		self::$client->captureException( $exception );
 	}
 }
