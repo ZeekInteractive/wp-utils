@@ -34,6 +34,10 @@ class ErrorHandling {
 	}
 	
 	static function capture( $exception ) {
+		if ( empty( self::$client ) ) {
+			return;
+		}
+
 		self::$client->captureException( $exception );
 	}
 }
