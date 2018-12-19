@@ -16,7 +16,6 @@ class Behaviors {
 		 */
 		add_filter( 'file_mod_allowed', [ $this, 'file_mod_allowed' ], 999 );
 
-
 		/**
 		 * Disables the 'Update WordPress' admin nag notice
 		 */
