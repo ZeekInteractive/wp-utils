@@ -14,16 +14,38 @@ function get_current_url() {
 }
 
 /**
+ * Get an array of parts of the current URL
+ * 
+ * @return mixed
+ */
+function get_current_url_parts() {
+	$current_url = get_current_url();
+
+	$url_parts = parse_url( $current_url );
+	
+	return $url_parts;
+}
+
+/**
  * Returns the current URL, but without query args.
  *
  * @return string
  */
 function get_current_url_clean() {
-	$current_url = get_current_url();
+	$url_parts = get_current_url_parts();
 
-	$url_parts = parse_url( $current_url );
+	return home_url( $url_parts['path'] ?? null );
+}
 
-	return home_url( $url_parts['path'] );
+/**
+ * Returns the current path
+ * 
+ * @return string
+ */
+function get_current_url_path() {
+	$url_parts = get_current_url_parts();
+	
+	return $url_parts['path'] ?? '/';
 }
 
 /**
