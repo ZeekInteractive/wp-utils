@@ -3,6 +3,8 @@
 namespace Zeek\WP_Util;
 
 class ErrorHandling {
+	const SENTRY_JS_SDK_VERSION = '4.5.3';
+
 	private static $client;
 
 	public static $exclusions = [
@@ -11,12 +13,38 @@ class ErrorHandling {
 		'Parameter 1 to wp_default_packages() expected to be a reference, value given',
 	];
 
-	static function init() {
-		$sentry_url = get_env_value( 'SENTRY_URL' );
+	/**
+	 * @var string
+	 */
+	private static $sentry_url;
 
-		if ( empty( $sentry_url ) ) {
+	/**
+	 * Initialize error reporting.
+	 *
+	 * @return bool Whether error reporting was successfully initialized.
+	 */
+	public static function init() {
+		static::$sentry_url = get_env_value( 'SENTRY_URL' );
+
+		if ( empty( static::$sentry_url ) ) {
 			return false;
 		}
+
+		static::init_php();
+
+		if ( boolval( get_env_value( 'SENTRY_JS' ) ) ) {
+			static::init_js();
+		}
+
+		return true;
+	}
+
+	public static function init_js() {
+		add_action( 'wp_enqueue_scripts', [ __NAMESPACE__ . '\ErrorHandling', 'js_enqueue_sentry_sdk' ] );
+		add_action( 'wp_head', [ __NAMESPACE__ . '\ErrorHandling', 'js_init_sentry_sdk' ] );
+	}
+
+	public static function init_php() {
 
 		if ( ! empty( self::$client ) ) {
 			return self::$client;
@@ -45,7 +73,7 @@ class ErrorHandling {
 			},
 		];
 
-		self::$client = new \Raven_Client( $sentry_url, $options );
+		self::$client = new \Raven_Client( static::$sentry_url, $options );
 		self::$client->install();
 
 		return self::$client;
@@ -69,5 +97,26 @@ class ErrorHandling {
 		}
 
 		self::$client->captureException( $exception );
+	}
+
+	/**
+	 * Enqueue the Sentry Javascript SDK.
+	 */
+	public static function js_enqueue_sentry_sdk() {
+		wp_enqueue_script(
+			'sentry',
+			sprintf( 'https://browser.sentry-cdn.com/%s/bundle.min.js', static::SENTRY_JS_SDK_VERSION )
+		);
+	}
+
+	/**
+	 * Initialize the Sentry Javascript SDK.
+	 */
+	public static function js_init_sentry_sdk() {
+		?>
+		<script>
+			Sentry.init( { dsn: <?php echo wp_json_encode( static::$sentry_url ); ?> } );
+		</script>
+		<?php
 	}
 }
