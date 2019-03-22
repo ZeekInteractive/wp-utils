@@ -149,3 +149,20 @@ function get_var_from_table( $table, $select, $where_col, $where_val ) {
 		$where_val
 	) );
 }
+
+function get_post_id_by_meta_key_value( $key, $value ) {
+	global $wpdb;
+
+	return $wpdb->get_var( $wpdb->prepare( "
+			SELECT
+				pm.post_id
+			FROM
+				$wpdb->postmeta as pm
+			WHERE
+				pm.meta_key = %s AND
+				pm.meta_value = %s
+			",
+		sanitize_text_field( $key ),
+		sanitize_text_field( $value )
+	) );
+}
