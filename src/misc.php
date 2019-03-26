@@ -174,5 +174,5 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
  * Get the slug of the path without any preceeding or trailing slashes
  */
 function get_current_url_slug() {
-	return trim( get_current_url(), '/' );
+	return trim( get_current_url_path(), '/' );
 }
