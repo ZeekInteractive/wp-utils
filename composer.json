@@ -24,8 +24,6 @@
 		"files": ["package.php"]
 	},
 	"require-dev": {
-		"zeek/wp-local-hosts-ssl-whitelist": ">=1",
-		
 		"codeception/codeception": "2.3.9",
 		"codacy/coverage": "^1.4",
 		"10up/wp_mock": "^0.3.0",
