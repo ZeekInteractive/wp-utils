@@ -23,6 +23,9 @@
 	"autoload": {
 		"files": ["package.php"]
 	},
+	"autoload-dev": {
+		"files": ["package-dev.php"]
+	},
 	"require-dev": {
 		"codeception/codeception": "2.3.9",
 		"codacy/coverage": "^1.4",
