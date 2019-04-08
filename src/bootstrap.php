@@ -20,7 +20,12 @@ function bootstrap( $dir ) {
 	/**
 	 * Enable WP Util Behaviors
 	 */
-	new \Zeek\WP_Util\Behaviors();
+	new Behaviors();
+
+	/**
+	 * Kick off third party integrations as dictated by our .env variables
+	 */
+	new ThirdParty\Init();
 
 	/**
 	 * Autoload all php files in /src/
