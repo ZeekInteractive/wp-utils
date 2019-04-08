@@ -18,7 +18,7 @@ function get_current_url() {
  * 
  * @return mixed
  */
-function get_current_url_parts() {
+function get_current_url_parts() : array {
 	$current_url = get_current_url();
 
 	$url_parts = parse_url( $current_url );
@@ -27,11 +27,20 @@ function get_current_url_parts() {
 }
 
 /**
+ * Return just the host/domain of the current install
+ */
+function get_current_host() : string {
+	$parts = get_current_url_parts();
+
+	return $parts['host'] ?? null;
+}
+
+/**
  * Returns the current URL, but without query args.
  *
  * @return string
  */
-function get_current_url_clean() {
+function get_current_url_clean() : string {
 	$url_parts = get_current_url_parts();
 
 	return home_url( $url_parts['path'] ?? null );
