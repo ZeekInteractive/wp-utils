@@ -176,3 +176,11 @@ function remove_filters_for_anonymous_class( $hook_name = '', $class_name = '', 
 function get_current_url_slug() {
 	return trim( get_current_url_path(), '/' );
 }
+
+/**
+ * Get a ever changing number that is grouped by a number of minutes
+ * Useful for nonces
+ */
+function get_minute_based_tick( int $minutes = 10 ) : float {
+	return ceil( time() / ( MINUTE_IN_SECONDS * $minutes ) );
+}
