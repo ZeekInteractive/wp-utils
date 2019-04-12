@@ -7,14 +7,21 @@ namespace Zeek\WP_Utils;
  * 
  * @param string $url
  * @param array  $data
+ * @param array  $headers
  *
  * @return array
  * @throws \Exception
  */
-function remote_post( string $url, array $data ) : array {
+function remote_post( string $url, array $data, array $headers = [] ) : array {
+
+	$header_defaults = [
+		'Content-Type' => 'application/json'
+	];
+
+	$headers = wp_parse_args( $headers, $header_defaults );
 	
 	$response = wp_remote_post( $url, [
-		'headers'     => [ 'Content-Type' => 'application/json; charset=utf-8' ],
+		'headers'     => $headers,
 		'body'        => json_encode( $data ),
 		'method'      => 'POST',
 		'data_format' => 'body',
