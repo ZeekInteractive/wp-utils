@@ -10,6 +10,19 @@
 namespace Zeek\WP_Util;
 
 /**
+ * Prefix the given table name with the table prefix.
+ *
+ * @param string $table_name
+ *
+ * @return string
+ */
+function wpdb_prefix_table( string $table_name ) {
+	global $wpdb;
+
+	return $wpdb->prefix . $table_name;
+}
+
+/**
  * Delete a row in the table
  *
  *     wpdb::delete( 'table', array( 'ID' => 1 ) )
