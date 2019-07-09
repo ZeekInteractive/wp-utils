@@ -26,6 +26,13 @@ class GoogleTagManager {
 
 
 	public function init_output() {
+		// Allow the codebase to dictate whether or not this should run
+		$continue = apply_filters( __NAMESPACE__ . '\allow_google_tag_manager', true );
+
+		if ( true !== $continue ) {
+			return;
+		}
+		
 		add_action('wp_head', [ $this, 'head_output' ], 100);
 		add_action( 'wp_body_open', [ $this, 'body_output'] );
 	}
