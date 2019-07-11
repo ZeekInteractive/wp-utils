@@ -15,17 +15,21 @@ class Constants
 
 	public static function init($dir)
 	{
+		// Set usable constants
+		define('APP_URL', plugin_dir_url($dir));
+		define('APP_PATH', dirname($dir).'/');
+
 		/**
 		 * Load dotenv if .env file is present
 		 */
 		if (file_exists($dir.'/.env.php')) {
-			DotEnv::load($dir.'/.env.php');
-			DotEnv::copyVarsToEnv();
+			try {
+				DotEnv::load($dir.'/.env.php');
+				DotEnv::copyVarsToEnv();
+			} catch (\Throwable $e ) {
+				error_log('ENV load fail: Unable to properly load .env.php file, check that it is formed correctly');
+			}
 		}
-
-		// Set usable constants
-		define('APP_URL', plugin_dir_url($dir));
-		define('APP_PATH', dirname($dir).'/');
 
 		/**
 		 * Set each environmental variable as a constant if not already defined
@@ -44,12 +48,12 @@ class Constants
 		$env_value = env($key, $default);
 
 		if (! isset($env_value)) {
-			return false;
+			return;
 		}
 
 		// if not defined
 		if (defined($key)) {
-			return false;
+			return;
 		}
 
 		define($key, $env_value);

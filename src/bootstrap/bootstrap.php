@@ -2,10 +2,7 @@
 
 namespace Zeek\WP_Util;
 
-use Zeek\WP_Util\ErrorHandling;
 use function A7\autoload;
-use function Zeek\WP_Util\get_env_value;
-use Zeek\WP_Util\ThirdParty\Init;
 
 function bootstrap( $dir ) {
 	/**
