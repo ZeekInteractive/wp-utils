@@ -55,6 +55,10 @@ class ErrorHandling {
 		$options = [
 			'send_callback' => function ( $data ) use ( $exclusions ) {
 
+				if ( static::lite_mode_enabled() && ! ( $data['force'] ?? false ) ) {
+					return false;
+				}
+
 				if ( 'error' === $data['level'] ) {
 					return $data;
 				}
@@ -96,7 +100,7 @@ class ErrorHandling {
 			return;
 		}
 
-		self::$client->captureException( $exception );
+		self::$client->captureException( $exception, [ 'force' => true ] );
 	}
 
 	/**
@@ -118,5 +122,14 @@ class ErrorHandling {
 			Sentry.init( { dsn: <?php echo wp_json_encode( static::$sentry_url ); ?> } );
 		</script>
 		<?php
+	}
+
+	/**
+	 * Whether lite mode is enabled.
+	 *
+	 * @return bool
+	 */
+	public static function lite_mode_enabled() {
+		return boolval( get_env_value( 'ERROR_HANDLING_LITE_MODE_ENABLED' ) );
 	}
 }
