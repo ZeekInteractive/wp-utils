@@ -7,6 +7,9 @@ Utility functions that make life just a little bit easier.
 
 ## Database
 
+### `db_transaction( $callable, $args = [] )`
+Run the given callback within a database transaction, rolling back the transaction if an error occurs.
+
 ### `get_raw_option_value( $key )`
 Performs a very direct, simple query to the WordPress Options table that bypasses normal WP caching.
 

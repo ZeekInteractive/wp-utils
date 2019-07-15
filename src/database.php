@@ -2,6 +2,33 @@
 
 namespace Zeek\WP_Util;
 
+use Throwable;
+
+/**
+ * Run the given callback within a database transaction, rolling back the transaction if an error occurs.
+ *
+ * @param callable $callback
+ * @param array    $args
+ *
+ * @return mixed
+ *
+ * @throws Throwable
+ */
+function db_transaction( callable $callback, array $args = [] ) {
+	try {
+		wpdb_query( 'START TRANSACTION' );
+
+		$result = call_user_func_array( $callback, $args );
+
+		wpdb_query( 'COMMIT' );
+	} catch ( Throwable $exception ) {
+		wpdb_query( 'ROLLBACK' );
+
+		throw $exception;
+	}
+
+	return $result;
+}
 
 /**
  * Performs a reverse lookup of a post based on it's slug
