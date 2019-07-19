@@ -21,14 +21,14 @@ function bootstrap( $dir ) {
 	new Behaviors();
 
 	/**
-	 * Kick off third party integrations as dictated by our .env variables
-	 */
-	new ThirdParty\Init();
-
-	/**
 	 * Autoload all php files in /src/
 	 */
 	autoload( $dir . '/src' );
+
+	/**
+	 * Kick off third party integrations as dictated by our .env variables
+	 */
+	new ThirdParty\Init();
 
 	/**
 	 * Load /bin folder for any wp cli commands safely
