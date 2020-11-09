@@ -11,6 +11,7 @@ class ErrorHandling {
 		'Parameter 1 to wp_default_scripts() expected to be a reference, value given',
 		'Parameter 1 to wp_default_styles() expected to be a reference, value given',
 		'Parameter 1 to wp_default_packages() expected to be a reference, value given',
+		'session_start(): Cannot start session when headers already sent',
 	];
 
 	/**
