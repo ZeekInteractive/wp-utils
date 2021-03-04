@@ -16,7 +16,7 @@ class Constants
 	public static function init($dir)
 	{
 		// Set usable constants
-		define('APP_URL', plugin_dir_url($dir));
+		define('APP_URL', plugin_dir_url($dir) . 'app/');
 		define('APP_PATH', $dir.'/');
 
 		/**
