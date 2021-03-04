@@ -17,7 +17,7 @@ class Constants
 	{
 		// Set usable constants
 		define('APP_URL', plugin_dir_url($dir));
-		define('APP_PATH', dirname($dir).'/');
+		define('APP_PATH', $dir.'/');
 
 		/**
 		 * Load dotenv if .env file is present
