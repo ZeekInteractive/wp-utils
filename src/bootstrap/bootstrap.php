@@ -15,7 +15,7 @@ function bootstrap( $dir ) {
 	 * Add Sentry Error Logging
 	 */
 	// @todo remove old call
-//	ErrorHandling::init();
+	//ErrorHandling::init();
 	WpSentry::init();
 
 	/**
