@@ -36,7 +36,9 @@
 		"php": ">=7.0",
 		"arrilot/dotenv-php": "^1.0",
 		"a7/autoload": ">=2",
-		
-		"zeek/php-utils": ">=2"
+
+		"zeek/php-utils": ">=2",
+
+		"zeek/wp-sentry": "^1.0"
 	}
 }
