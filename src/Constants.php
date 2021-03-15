@@ -7,6 +7,7 @@ use Arrilot\DotEnv\DotEnv;
 class Constants
 {
 	private static $env_vars = [
+		'ENVIRONMENT'           => 'production',
 		'ACF_LITE'              => true,
 		'DISABLE_WP_CRON'       => false,
 		'FILE_MOD_ALLOWED'      => false,
