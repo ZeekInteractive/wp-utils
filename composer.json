@@ -42,6 +42,6 @@
 
 		"zeek/php-utils": ">=2",
 
-		"zeek/wp-sentry": "^1.0||dev-master"
+		"zeek/wp-sentry": "^1.1"
 	}
 }
