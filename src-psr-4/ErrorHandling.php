@@ -1,6 +1,6 @@
 <?php
 
-namespace Zeek\Wp_Util;
+namespace Zeek\WP_Util;
 
 use Zeek\WP_Util\Interfaces\ErrorHandling as ErrorHandlingInterface;
 

@@ -22,7 +22,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Zeek\\Wp_Util\\": "src-psr-4/"
+			"Zeek\\WP_Util\\": "src-psr-4/"
 		},
 		"files": ["package.php"]
 	},
