@@ -21,6 +21,9 @@
 		}
 	],
 	"autoload": {
+		"psr-4": {
+			"Zeek\\Wp_Util\\": "src-psr-4/"
+		},
 		"files": ["package.php"]
 	},
 	"autoload-dev": {
@@ -39,6 +42,6 @@
 
 		"zeek/php-utils": ">=2",
 
-		"zeek/wp-sentry": "^1.0"
+		"zeek/wp-sentry": "^1.0||dev-master"
 	}
 }
