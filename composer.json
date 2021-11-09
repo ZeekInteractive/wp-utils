@@ -5,11 +5,6 @@
 	"license": "proprietary",
 	"authors": [
 		{
-			"name": "Philip Newcomer",
-			"email": "philip@zeek.com",
-			"homepage": "https://philipnewcomer.net"
-		},
-		{
 			"name": "Aaron Holbrook",
 			"email": "aaron@zeek.com",
 			"homepage": "https://aaronjholbrook.com"
@@ -18,6 +13,10 @@
 			"name": "Zeek Interactive",
 			"email": "info@zeek.com",
 			"homepage": "https://zeek.com"
+		},
+		{
+			"name": "Philip Newcomer",
+			"homepage": "https://philipnewcomer.net"
 		}
 	],
 	"autoload": {
@@ -38,9 +37,9 @@
 	"require": {
 		"php": ">=7.0",
 		"arrilot/dotenv-php": "^1.0",
-		"a7/autoload": ">=2",
+		"a7/autoload": "^2",
 
-		"zeek/php-utils": ">=2",
+		"zeek/php-utils": "^2",
 
 		"zeek/wp-sentry": "^1.1.2"
 	}
