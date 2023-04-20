@@ -2,7 +2,6 @@
 
 namespace Zeek\WP_Util;
 
-use Zeek\WpSentry\WpSentry;
 use function A7\autoload;
 
 function bootstrap( $dir ) {
@@ -14,7 +13,9 @@ function bootstrap( $dir ) {
 	/**
 	 * Add Sentry Error Logging
 	 */
-	WpSentry::init();
+	if ( class_exists( '\Sentry\ClientBuilder' ) ) {
+		\Zeek\WpSentry\WpSentry::init();
+	}
 
 	/**
 	 * Enable WP Util Behaviors
