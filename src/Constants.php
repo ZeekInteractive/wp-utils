@@ -20,16 +20,28 @@ class Constants
 		define('APP_URL', plugin_dir_url($dir) . 'app/');
 		define('APP_PATH', $dir.'/');
 
+        $envPath = APP_PATH.'.env.php';
+
 		/**
 		 * Load dotenv if .env file is present
 		 */
-		if (file_exists($dir.'/.env.php')) {
+		if (file_exists($envPath)) {
 			try {
-				DotEnv::load($dir.'/.env.php');
+				DotEnv::load($envPath);
 				DotEnv::copyVarsToEnv();
 			} catch (\Throwable $e ) {
 				error_log('ENV load fail: Unable to properly load .env.php file, check that it is formed correctly');
 			}
+
+            // Ensure WP_ENVIRONMENT_TYPE is not a WP default value
+            if (!defined('WP_ENVIRONMENT_TYPE')){
+                define('WP_ENVIRONMENT_TYPE',env('ENVIRONMENT'));
+            }
+
+            // Ensure ENV ENVIRONMENT and WP_ENVIRONMENT_TYPE agree.
+            if ( env('ENVIRONMENT') !== wp_get_environment_type() ){
+                throw new \Error("$envPath thinks this is '" . env("ENVIRONMENT") . "' and wp_get_environment_type() thinks this is '".wp_get_environment_type()."' and WP_ENVIRONMENT_TYPE is '".WP_ENVIRONMENT_TYPE."'. They must agree.");
+            }
 		}
 
 		/**
