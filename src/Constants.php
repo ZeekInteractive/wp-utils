@@ -33,15 +33,24 @@ class Constants
 				error_log('ENV load fail: Unable to properly load .env.php file, check that it is formed correctly');
 			}
 
-            // Ensure WP_ENVIRONMENT_TYPE is not a WP default value
-            if (!defined('WP_ENVIRONMENT_TYPE')){
-                define('WP_ENVIRONMENT_TYPE',env('ENVIRONMENT'));
-            }
+			// For backwards compatibility, we will not throw errors unless ENVIRONMENT is actually defined in .env.php
+			if (env("ENVIRONMENT")){
 
-            // Ensure ENV ENVIRONMENT and WP_ENVIRONMENT_TYPE agree.
-            if ( env('ENVIRONMENT') !== wp_get_environment_type() ){
-                throw new \Error("$envPath thinks this is '" . env("ENVIRONMENT") . "' and wp_get_environment_type() thinks this is '".wp_get_environment_type()."' and WP_ENVIRONMENT_TYPE is '".WP_ENVIRONMENT_TYPE."'. They must agree.");
-            }
+				// wp_get_environment_type() uses WP_ENVIRONMENT_TYPE, so update to match if not already defined
+				if (!defined('WP_ENVIRONMENT_TYPE')){
+					define('WP_ENVIRONMENT_TYPE',env('ENVIRONMENT'));
+				}
+
+				// Ensure env('ENVIRONMENT') and wp_get_environment_type() agree as these are the
+				// expected ways to access the environment name.
+				if ( env('ENVIRONMENT') !== wp_get_environment_type() ){
+					throw new \Error("Conflicting environment names. "
+						. "env('ENVIRONMENT') is '" . env("ENVIRONMENT") . "'. "
+						. "wp_get_environment_type() is '".wp_get_environment_type()."'. "
+						. "They must agree."
+					);
+				}
+			}
 		}
 
 		/**
