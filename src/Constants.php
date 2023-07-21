@@ -7,11 +7,11 @@ use Arrilot\DotEnv\DotEnv;
 class Constants
 {
 	private static $env_vars = [
-		'ENVIRONMENT'           => 'production',
-		'ACF_LITE'              => true,
-		'DISABLE_WP_CRON'       => false,
-		'FILE_MOD_ALLOWED'      => false,
-		'SENTRY_URL'            => null,
+		'ENVIRONMENT'		   => 'production',
+		'ACF_LITE'			  => true,
+		'DISABLE_WP_CRON'	   => false,
+		'FILE_MOD_ALLOWED'	  => false,
+		'SENTRY_URL'			=> null,
 	];
 
 	public static function init($dir)
@@ -20,7 +20,7 @@ class Constants
 		define('APP_URL', plugin_dir_url($dir) . 'app/');
 		define('APP_PATH', $dir.'/');
 
-        $envPath = APP_PATH.'.env.php';
+		$envPath = APP_PATH.'.env.php';
 
 		/**
 		 * Load dotenv if .env file is present
