@@ -67,13 +67,20 @@ class Constants
 	private static function env_set($key, $default)
 	{
 		// Check if we have env value
-		$env_value = env($key, $default);
+		$env_value = env($key);
 
-		if (! isset($env_value)) {
-			return;
-		}
+        // If not value or default move along
+        if (!isset($env_value) && !isset($default)){
+            return;
+        }
 
-		// if not defined
+        // Use the default if env_value is not set
+        if(!isset($env_value)){
+            DotEnv::set($key,$default);
+            $env_value = $default;
+        }
+
+		// Make default env_vars global vars.
 		if (defined($key)) {
 			return;
 		}
