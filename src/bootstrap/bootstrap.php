@@ -26,7 +26,6 @@ function bootstrap( $dir ) {
 	 * Autoload all php files in /src/
 	 */
 	autoload( $dir . '/src' );
-	autoload( $dir . '/src-psr-4' );
 
 	/**
 	 * Kick off third party integrations as dictated by our .env variables
